@@ -12,7 +12,7 @@ from zope.interface import implements
 FILENAME_REGEX = re.compile(r"^(.+)\.(\w{,4})$")
 IGNORE_REGEX = re.compile(r"['\"]")
 NON_WORD_REGEX = re.compile(r"[\W\-]+")
-DANGEROUS_CHARS_REGEX = re.compile(r"[!#$%&()*+,/:;<=>?@\\^{|}\[\]~`]+")
+DANGEROUS_CHARS_REGEX = re.compile(r"[!#$%&*+,/:;<=>?@\\^{|}\[\]~`]+")
 MULTIPLE_DASHES_REGEX = re.compile(r"\-+")
 EXTRA_DASHES_REGEX = re.compile(r"(^\-+)|(\-+$)")
 #Define static constraints
@@ -71,7 +71,7 @@ class IDNormalizer(object):
         text = baseNormalize(text)
 
         # lowercase text
-        base = text.lower()
+        # base = text.lower()
         ext  = ''
 
         # replace whitespace and punctuation, but preserve filename extensions
@@ -173,10 +173,7 @@ class URLNormalizer(object):
             if util is not None:
                 text = util.normalize(text, locale=locale)
 
-        text = baseNormalize(text)
-
-        # lowercase text
-        base = text.lower()
+        base = baseNormalize(text)
         ext  = ''
 
         m = FILENAME_REGEX.match(base)
