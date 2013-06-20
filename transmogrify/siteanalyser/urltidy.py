@@ -172,6 +172,7 @@ class UrlTidy(object):
         # Get the information we require for normalization
         keywords = dict(text=urllib.unquote_plus(part), locale=self.locale(item))
         # Perform Normalization
+        #import pdb; pdb.set_trace()
         part = normalizer.normalize(**keywords)
         if part in self.invalid_ids:
             return part + '-1'
